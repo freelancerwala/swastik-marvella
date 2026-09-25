@@ -2118,3 +2118,39 @@ td { font-size: 12px; font-weight: 500; }
   .sort-field, .month-nav { margin-left: 0; }
   .arcade-kpis, .arcade-layout, .arcade-cards { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 1024px) {
+  .login-shell, .login-art {
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100dvh !important;
+    overflow: auto !important;
+  }
+  .login-banner {
+    position: relative !important;
+    inset: auto !important;
+    order: 2;
+    width: 100% !important;
+    height: 140px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+  .login-panel {
+    position: relative !important;
+    order: 1;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: calc(100% - 28px) !important;
+    max-width: 420px !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+    border-radius: 22px !important;
+    margin: 20px auto 16px !important;
+    overflow: visible !important;
+  }
+  .login-panel-inner { padding: 22px 18px 18px !important; }
+}
