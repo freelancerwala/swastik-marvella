@@ -2084,16 +2084,25 @@ html.modal-open .mobile-tabs { visibility: hidden; }
     border-radius: 16px;
     padding: 8px 12px;
     margin: 0 0 12px;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
   }
-  table td { padding: 8px 0; border-bottom: 1px solid #f3eee4; white-space: normal; }
+  table td { padding: 8px 0; border-bottom: 1px solid #f3eee4; white-space: normal; max-width: 100%; box-sizing: border-box; }
   table td:last-child { border-bottom: 0; }
+  .ledger-table .method-select {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+  }
   .unit-board { grid-template-columns: 1fr 1fr; }
   .floor-band header, .panel-head, .wing-top { flex-wrap: wrap; }
   .fin-kpis, .stat-strip, .kpi-grid, .kpi-grid.kpi-4, .tower-stats, .tower-kpis { grid-template-columns: 1fr !important; }
   img, video { max-width: 100%; }
   .login-banner { position: fixed !important; inset: 0 !important; width: 100% !important; height: 100% !important; max-width: none; object-fit: cover !important; }
   .btn-row .btn, .welcome-actions .btn { flex: 1 1 140px; justify-content: center; }
-  .ledger-table .method-select { width: 100%; max-width: 100%; }
   .ledger-table .row-actions { justify-content: flex-start; }
   .pace-chart { overflow-x: auto; }
   .pace-card header, .defaulter-card header, .defaulter-card footer, .defaulter-card article { flex-wrap: wrap; }
