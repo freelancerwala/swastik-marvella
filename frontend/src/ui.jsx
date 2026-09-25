@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Ico } from "./icons.jsx";
 
@@ -59,6 +60,17 @@ export function PageHeader({ icon, title, blurb, kicker = "Society workspace", c
 }
 
 export function Modal({ title, children, onClose }) {
+  useEffect(() => {
+    const main = document.querySelector(".app > main");
+    const previous = window.scrollY;
+    document.documentElement.classList.add("modal-open");
+    if (main) main.classList.add("modal-open");
+    return () => {
+      document.documentElement.classList.remove("modal-open");
+      if (main) main.classList.remove("modal-open");
+      window.scrollTo(0, previous);
+    };
+  }, []);
   return (
     <div className="modal-back" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>

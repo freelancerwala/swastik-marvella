@@ -932,10 +932,11 @@ td { font-size: 12px; font-weight: 500; }
   inset: 0;
   background: rgba(43, 33, 24, 0.45);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 20px;
-  z-index: 20;
+  padding: 16px 12px;
+  z-index: 80;
+  overflow: hidden;
 }
 .modal {
   width: min(640px, 100%);
@@ -943,10 +944,19 @@ td { font-size: 12px; font-weight: 500; }
   border-radius: 22px;
   padding: 24px;
   box-shadow: var(--shadow);
-  max-height: 90vh;
+  max-height: calc(100dvh - 32px);
   overflow: auto;
+  overscroll-behavior: contain;
   font-family: var(--font);
+  margin-top: 8px;
 }
+html.modal-open,
+html.modal-open body,
+html.modal-open .app > main {
+  overflow: hidden !important;
+  height: 100%;
+}
+html.modal-open .mobile-tabs { visibility: hidden; }
 
 .empty { padding: 24px; color: var(--muted); text-align: center; }
 .badge.open, .badge.inside, .badge.active, .badge.upcoming, .badge.current, .badge.logged, .badge.leased, .badge.owner, .badge.verified { background: #d9efdf; color: var(--ok); }
@@ -1858,12 +1868,15 @@ td { font-size: 12px; font-weight: 500; }
   }
   .avatar-chip em { display: none; }
   .content { padding: 12px 12px calc(20px + env(safe-area-inset-bottom)); }
-  .modal-back { padding: 0; align-items: flex-end; }
+  .modal-back { padding: 10px 10px calc(10px + env(safe-area-inset-bottom)); align-items: flex-start; overflow: hidden; z-index: 80; }
   .modal {
     width: 100%;
-    max-height: 92dvh;
-    border-radius: 18px 18px 0 0;
-    padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
+    max-height: calc(100dvh - 20px - env(safe-area-inset-bottom));
+    margin-top: 4px;
+    border-radius: 18px;
+    padding: 16px;
+    overflow: auto;
+    overscroll-behavior: contain;
   }
   input, select, textarea { font-size: 16px; }
   .btn, .icon-btn { min-height: 36px; }
@@ -2055,7 +2068,7 @@ td { font-size: 12px; font-weight: 500; }
   .top-logout { display: inline-flex !important; }
   .top-brand { min-width: 0; }
   .top-search, .top-search input, .tower-tools, .tower-tools label, .tower-tools .dir-search, .search-field { min-width: 0; width: 100%; max-width: none; }
-  .content { padding: 12px 12px calc(104px + env(safe-area-inset-bottom)) !important; }
+  .content { padding: 12px 12px calc(128px + env(safe-area-inset-bottom)) !important; }
   .card, .dir-panel, .panel-card { overflow: visible; max-width: 100%; }
   .resident-table, .ledger-table, .card > table, .dir-panel table, table {
     min-width: 0 !important;
