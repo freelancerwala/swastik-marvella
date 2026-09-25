@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: sm-living-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FRONTEND_URL
+        sync: false
+      - key: SECRETARY_NAME
+        value: Society Secretary
+      - key: SECRETARY_EMAIL
+        value: secretary@swastikmarvella.in
+      - key: SECRETARY_PASSWORD
+        sync: false
+      - key: DATA_DIR
+        value: /data
+      - key: DATABASE_URL
+        value: sqlite:////data/smliving.db
+    disk:
+      name: sm-living-data
+      mountPath: /data
+      sizeGB: 1
