@@ -2102,6 +2102,21 @@ html.modal-open .mobile-tabs { visibility: hidden; }
   .due-set input { flex: 1; min-width: 0; }
   .search-ribbon .seg { overflow-x: auto; flex-wrap: nowrap; }
   .search-ribbon .seg button { flex: 0 0 auto; }
+  table td.row-actions {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  table td.row-actions .icon-btn,
+  table td.row-actions .btn {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    flex: 0 0 40px;
+  }
+  .ledger-table tr { padding-bottom: 10px; }
 }
 
 @media (max-width: 1180px) {
