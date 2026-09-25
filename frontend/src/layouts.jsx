@@ -41,12 +41,22 @@ const userLinks = (role) =>
       ];
 
 function MobileTabs({ links }) {
+  const short = {
+    "Wings & Flats": "Wings",
+    Maintenance: "Bills",
+    Documents: "Docs",
+    "Owner details": "Owners",
+    "Rent details": "Rent",
+    "My account": "Account",
+    "WhatsApp all": "WhatsApp",
+    "House on rent": "Rent",
+  };
   return (
     <nav className="mobile-tabs" aria-label="Pages">
       {links.map(([label, to, icon, end]) => (
         <NavLink key={to} to={to} end={Boolean(end)} className={({ isActive }) => `mobile-tab${isActive ? " on" : ""}`}>
           <Icon name={icon} size={18} />
-          <span>{label}</span>
+          <span>{short[label] || label}</span>
         </NavLink>
       ))}
     </nav>
@@ -189,7 +199,7 @@ export function AdminLayout() {
         <div className="content">
           <Outlet />
         </div>
-        <MobileTabs links={adminLinks} />
+        <MobileTabs links={[...adminLinks, ...adminFoot]} />
       </main>
     </div>
   );

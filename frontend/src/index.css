@@ -2054,6 +2054,55 @@ td { font-size: 12px; font-weight: 500; }
 .wing-note textarea { min-height: 56px; background: #fffdf8; color: var(--ink); }
 .wing-note .btn { justify-self: end; }
 
+@media (max-width: 860px) {
+  html, body { overflow-x: hidden; }
+  .sidebar { display: none !important; }
+  .app {
+    display: block;
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+    background: var(--panel);
+  }
+  .app > main {
+    margin: 0;
+    width: 100%;
+    min-height: 100dvh;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+    background: var(--panel);
+  }
+  .top-logout { display: inline-flex !important; }
+  .top-brand { min-width: 0; }
+  .top-search, .top-search input, .tower-tools, .tower-tools label, .tower-tools .dir-search, .search-field { min-width: 0; width: 100%; max-width: none; }
+  .content { padding: 12px 12px calc(104px + env(safe-area-inset-bottom)) !important; }
+  .card, .dir-panel, .panel-card { overflow: visible; max-width: 100%; }
+  .resident-table, .ledger-table, .card > table, .dir-panel table, table {
+    min-width: 0 !important;
+    width: 100%;
+    display: block;
+    overflow: visible;
+  }
+  table thead { display: none; }
+  table tbody, table tr, table td, table th { display: block; width: auto; }
+  table tr {
+    background: #fffdf8;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 8px 12px;
+    margin: 0 0 12px;
+  }
+  table td { padding: 8px 0; border-bottom: 1px solid #f3eee4; white-space: normal; }
+  table td:last-child { border-bottom: 0; }
+  .unit-board { grid-template-columns: 1fr 1fr; }
+  .floor-band header, .panel-head, .wing-top { flex-wrap: wrap; }
+  .fin-kpis, .stat-strip, .kpi-grid, .kpi-grid.kpi-4, .tower-stats, .tower-kpis { grid-template-columns: 1fr !important; }
+  img, video { max-width: 100%; }
+  .login-banner { height: 28vh; object-fit: cover; }
+  .btn-row .btn, .welcome-actions .btn { flex: 1 1 140px; justify-content: center; }
+}
+
 @media (max-width: 1180px) {
   .arcade-kpis { grid-template-columns: 1fr 1fr; }
   .arcade-toolbar { grid-template-columns: 1fr; }
