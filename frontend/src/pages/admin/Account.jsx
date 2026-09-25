@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { api } from "../../api";
+import { api, fileUrl } from "../../api";
 import { useAuth } from "../../AuthContext.jsx";
 import { Btn, Field, PageHeader } from "../../ui.jsx";
 
@@ -155,7 +155,7 @@ export default function Account() {
               }}
             />
           </Field>
-          {pay.qr_url ? <img src={pay.qr_url} alt="Payment QR code" style={{ width: 140, height: 140, objectFit: "contain", background: "#fff" }} /> : null}
+          {pay.qr_url ? <img src={fileUrl(pay.qr_url)} alt="Payment QR code" style={{ width: 140, height: 140, objectFit: "contain", background: "#fff" }} /> : null}
           {payOk ? <p className="hint" style={{ gridColumn: "1 / -1", color: "var(--ok)" }}>{payOk}</p> : null}
           <div className="btn-row" style={{ gridColumn: "1 / -1" }}>
             <Btn icon="save" type="submit" disabled={payBusy}>{payBusy ? "Saving..." : "Save payment details"}</Btn>

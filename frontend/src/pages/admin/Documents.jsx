@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { api } from "../../api";
+import { api, fileUrl } from "../../api";
 import { useAuth } from "../../AuthContext.jsx";
 import { Btn, Field, Modal, confirmRemove, matches } from "../../ui.jsx";
 import { Ico } from "../../icons.jsx";
@@ -226,7 +226,7 @@ export default function Documents({ resident = false }) {
                 <td>{item.extra.occupancy === "owner" ? "Owner" : item.extra.occupancy === "rent" ? "Rent" : "Everyone"}</td>
                 <td>
                   {item.extra.file ? (
-                    <a href={`/api/files/documents/${item.extra.file}?token=${encodeURIComponent(localStorage.getItem("sm_token") || "")}`} target="_blank" rel="noreferrer">
+                    <a href={fileUrl(`documents/${item.extra.file}`)} target="_blank" rel="noreferrer">
                       {item.extra.file_label || item.extra.file_name || "Open file"}
                     </a>
                   ) : "—"}

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { api } from "../api";
+import { api, fileUrl } from "../api";
 import { Btn, PageHeader, confirmRemove, money, when } from "../ui.jsx";
 import { Ico } from "../icons.jsx";
 import { useAuth } from "../AuthContext.jsx";
@@ -37,7 +37,7 @@ export default function Slips({ title = "Payments & paid slips" }) {
     }
     const number = digits.length === 10 ? `91${digits}` : digits;
     const fileName = `${item.slip_no}.pdf`;
-    const pdfUrl = item.pdf_path || `/api/files/slips/${fileName}`;
+    const pdfUrl = fileUrl(item.pdf_path || `slips/${fileName}`);
     try {
       const res = await fetch(pdfUrl);
       if (!res.ok) throw new Error("Paid slip PDF is not ready.");
@@ -114,7 +114,7 @@ export default function Slips({ title = "Payments & paid slips" }) {
                   <td>{money(item.amount)}</td>
                   <td>{when(item.created_at)}</td>
                   <td className="btn-row">
-                    <Btn icon="picture_as_pdf" className="btn ghost small" href={item.pdf_path || `/api/files/slips/${item.slip_no}.pdf`} target="_blank" rel="noreferrer">PDF</Btn>
+                    <Btn icon="picture_as_pdf" className="btn ghost small" href={fileUrl(item.pdf_path || `slips/${item.slip_no}.pdf`)} target="_blank" rel="noreferrer">PDF</Btn>
                     <Btn icon="chat" className="btn small" onClick={() => sharePdf(item)}>WhatsApp</Btn>
                     {secretary ? (
                       <Btn icon="delete" className="btn danger small" onClick={async () => { if (!confirmRemove("paid slip")) return; await api.del(`/api/slips/${item.id}`); load(); }}>Delete</Btn>

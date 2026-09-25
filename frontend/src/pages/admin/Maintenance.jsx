@@ -325,7 +325,7 @@ export default function Maintenance() {
         <section className="panel-card">
           <div className="panel-head">
             <h3><Ico name="chat" size={16} /> 11th WhatsApp due notice</h3>
-            {notices.qr_url ? <img src={notices.qr_url} alt="Payment QR" style={{ width: 72, height: 72, objectFit: "contain", background: "#fff" }} /> : null}
+            {notices.qr_url ? <img src={fileUrl(notices.qr_url)} alt="Payment QR" style={{ width: 72, height: 72, objectFit: "contain", background: "#fff" }} /> : null}
           </div>
           <p className="hint">{notices.note}</p>
           {notices.contacts?.length ? (

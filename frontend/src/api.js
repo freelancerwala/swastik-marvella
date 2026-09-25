@@ -44,8 +44,13 @@ export function decorateUpdate(item) {
 
 export function fileUrl(path) {
   if (!path) return "";
+  if (path.startsWith("http")) return withToken(path);
+  const suffix = path.startsWith("/api/files/") ? path : `/api/files/${String(path).replace(/^\//, "")}`;
+  return withToken(`${API}${suffix}`);
+}
+
+function withToken(url) {
   const token = localStorage.getItem("sm_token");
-  const url = path.startsWith("http") ? path : `${API}/api/files/${path}`;
-  if (!token) return url;
+  if (!token || url.includes("token=")) return url;
   return `${url}${url.includes("?") ? "&" : "?"}token=${encodeURIComponent(token)}`;
 }
