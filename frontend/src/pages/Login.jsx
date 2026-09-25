@@ -33,6 +33,7 @@ export default function Login() {
 
   return (
     <div className="login-shell">
+      <img className="login-banner" src="/sm-banner.png" alt="" />
       <form className="login-panel" onSubmit={onSubmit}>
         <div className="login-panel-inner">
           <div className="brand-row">
