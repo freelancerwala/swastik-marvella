@@ -2090,12 +2090,24 @@ html.modal-open .mobile-tabs { visibility: hidden; }
   }
   table td { padding: 8px 0; border-bottom: 1px solid #f3eee4; white-space: normal; max-width: 100%; box-sizing: border-box; }
   table td:last-child { border-bottom: 0; }
-  .ledger-table .method-select {
+  .ledger-table td[data-label="Due date"],
+  .ledger-table td[data-label="Payment method"] {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    min-width: 0;
+    overflow: hidden;
+  }
+  .ledger-table .method-select,
+  .ledger-table input[type="date"].method-select,
+  .ledger-table select.method-select {
     display: block;
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
+    height: 42px;
     box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
   }
   .unit-board { grid-template-columns: 1fr 1fr; }
   .floor-band header, .panel-head, .wing-top { flex-wrap: wrap; }
