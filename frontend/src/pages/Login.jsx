@@ -33,34 +33,31 @@ export default function Login() {
 
   return (
     <div className="login-shell">
-      <div className="login-art">
-        <img className="login-banner" src="/sm-banner.png" alt="Swastik Marvella" />
-        <form className="login-panel" onSubmit={onSubmit}>
-          <div className="login-panel-inner">
-            <div className="brand-row">
-              <div>
-                <h2>Sign in</h2>
-                <span>Accounts are created by the secretary</span>
-              </div>
-            </div>
-            <label>
-              Email
-              <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" required />
-            </label>
-            <label>
-              Password
-              <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" required />
-            </label>
-            {error ? <p className="error">{error}</p> : null}
-            <div className="btn-row">
-              <button className="btn" disabled={busy}>
-                <Ico name="login" size={16} />
-                {busy ? "Checking..." : "Enter Swastik Marvella"}
-              </button>
+      <form className="login-panel" onSubmit={onSubmit}>
+        <div className="login-panel-inner">
+          <div className="brand-row">
+            <div>
+              <h2>Sign in</h2>
+              <span>Swastik Marvella</span>
             </div>
           </div>
-        </form>
-      </div>
+          <label>
+            Email
+            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" required autoComplete="username" />
+          </label>
+          <label>
+            Password
+            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" required autoComplete="current-password" />
+          </label>
+          {error ? <p className="error">{error}</p> : null}
+          <div className="btn-row">
+            <button className="btn" disabled={busy}>
+              <Ico name="login" size={16} />
+              {busy ? "Checking..." : "Enter Swastik Marvella"}
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   );
 }
