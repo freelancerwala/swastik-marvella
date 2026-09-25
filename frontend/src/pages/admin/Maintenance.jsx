@@ -504,8 +504,8 @@ export default function Maintenance() {
             ) : filtered.map((row) => {
               const state = ledgerStatus(row, today);
               return (
-                <tr key={row.id}>
-                  <td>
+                <tr key={row.id} className="bill-row">
+                  <td data-label="Flat">
                     <div className="resident-cell">
                       <span className="avatar-round sm">{String(row.flat_number || "?").slice(-3)}</span>
                       <div>
@@ -514,16 +514,16 @@ export default function Maintenance() {
                       </div>
                     </div>
                   </td>
-                  <td>{invoiceNo(row)}</td>
-                  <td>{row.description || "Society maintenance"}</td>
-                  <td>
+                  <td data-label="Invoice">{invoiceNo(row)}</td>
+                  <td data-label="Bill">{row.description || "Society maintenance"}</td>
+                  <td data-label="Amount">
                     <b>{money(row.amount)}</b>
                     {row.remaining_amount > 0 && row.remaining_amount !== row.amount ? <div className="asset-line">Due {money(row.remaining_amount)}</div> : null}
                   </td>
-                  <td>
+                  <td data-label="Due date">
                     <input className="method-select" type="date" value={row.due_date || dueOn15(row.month)} onChange={(e) => saveDue(row, e.target.value)} />
                   </td>
-                  <td>
+                  <td data-label="Payment method">
                     <select
                       className="method-select"
                       value={PAY_METHODS.includes(row.payment_method) ? row.payment_method : ""}
@@ -542,12 +542,12 @@ export default function Maintenance() {
                       {PAY_METHODS.map((item) => <option key={item} value={item}>{item}</option>)}
                     </select>
                   </td>
-                  <td>
+                  <td data-label="Status">
                     <span className={`pay-pill ${state === "paid" ? "paid" : state === "overdue" ? "due" : "grace"}`}>
                       {state === "paid" ? "Paid" : state === "overdue" ? "Overdue" : state === "review" ? "Review" : state === "partial" ? "Partial" : "In grace"}
                     </span>
                   </td>
-                  <td className="row-actions">
+                  <td className="row-actions" data-label="Actions">
                     {row.latest_payment?.status === "pending" ? <IconBtn icon="rate_review" title="Review" onClick={() => setReview(row.latest_payment)} /> : null}
                     {row.payment_status !== "paid" ? <IconBtn icon="payments" title="Record paid" onClick={() => setPay({ charge_id: row.id, amount: row.remaining_amount || row.amount, secretary_note: "Recorded by secretary", payment_method: row.payment_method || "" })} /> : null}
                     {row.latest_payment?.screenshot_path ? <IconBtn icon="download" title="Proof" href={fileUrl(row.latest_payment.screenshot_path)} target="_blank" rel="noreferrer" /> : null}

@@ -2093,6 +2093,15 @@ html.modal-open .mobile-tabs { visibility: hidden; }
   img, video { max-width: 100%; }
   .login-banner { position: fixed !important; inset: 0 !important; width: 100% !important; height: 100% !important; max-width: none; object-fit: cover !important; }
   .btn-row .btn, .welcome-actions .btn { flex: 1 1 140px; justify-content: center; }
+  .ledger-table .method-select { width: 100%; max-width: 100%; }
+  .ledger-table .row-actions { justify-content: flex-start; }
+  .pace-chart { overflow-x: auto; }
+  .pace-card header, .defaulter-card header, .defaulter-card footer, .defaulter-card article { flex-wrap: wrap; }
+  .month-nav { width: 100%; justify-content: space-between; }
+  .due-set { width: 100%; }
+  .due-set input { flex: 1; min-width: 0; }
+  .search-ribbon .seg { overflow-x: auto; flex-wrap: nowrap; }
+  .search-ribbon .seg button { flex: 0 0 auto; }
 }
 
 @media (max-width: 1180px) {
