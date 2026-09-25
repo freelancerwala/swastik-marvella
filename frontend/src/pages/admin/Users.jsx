@@ -434,7 +434,7 @@ export default function Users() {
               <tr><td colSpan={7} className="empty">No residents yet. Use Add New Resident to insert an owner or tenant. Create the household here first, then it appears in this directory.</td></tr>
             ) : filtered.map((row) => (
               <tr key={`${row.kind}-${row.id}`}>
-                <td>
+                <td data-label="Resident">
                   <div className="resident-cell">
                     <span className="avatar-round">{initials(row.name)}</span>
                     <div>
@@ -446,8 +446,7 @@ export default function Users() {
                     </div>
                   </div>
                 </td>
-                <td>
-                  <span className={`type-chip ${row.kind}`}>{row.kind === "tenant" ? "Rent" : "Owner"}</span>
+                <td data-label="Type">
                   {row.committee ? <span className="type-chip mc">MC Secretary</span> : null}
                   {row.kind === "tenant" ? (
                     <div className="asset-line">
@@ -456,16 +455,13 @@ export default function Users() {
                     </div>
                   ) : null}
                 </td>
-                <td>
-                  <div className="asset-line">{row.members || 1} Member{(row.members || 1) === 1 ? "" : "s"}</div>
+                <td data-label="Household">
                   <div className="asset-line">{row.vehicle ? `Vehicle · ${row.vehicle}` : row.parking ? `Parking · ${row.parking}` : "No vehicle listed"}</div>
                 </td>
-                <td>
-                  <div className="contact-line">{row.phone || "—"}</div>
+                <td data-label="Contact">
                   <div className="asset-line">{row.email || ""}</div>
                 </td>
-                <td>
-                  {row.billed > 0 && row.dues <= 0 ? (
+                <td data-label="Maintenance">
                     <span className="pay-pill paid">Paid</span>
                   ) : row.dues > 0 ? (
                     <span className="pay-pill due">Due {money(row.dues)}</span>
@@ -473,17 +469,14 @@ export default function Users() {
                     <span className="pay-pill grace">No bill</span>
                   )}
                 </td>
-                <td>
-                  <button
-                    type="button"
-                    className={row.kyc === "verified" ? "kyc-ok kyc-btn" : "kyc-wait kyc-btn"}
+                <td data-label="KYC">
                     onClick={() => toggleKyc(row)}
                     title={row.kyc === "verified" ? "Click to mark pending" : "Click to mark verified"}
                   >
                     {row.kyc === "verified" ? "Verified" : "Pending verification"}
                   </button>
                 </td>
-                <td className="row-actions">
+                <td className="row-actions" data-label="Actions">
                   <IconBtn icon="edit" title="Edit" onClick={() => openEdit(row)} />
                   <IconBtn icon="receipt_long" title="Ledger" to="/admin/maintenance" />
                   <IconBtn

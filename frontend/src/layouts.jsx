@@ -40,6 +40,18 @@ const userLinks = (role) =>
         ["Payments", "/app/slips", "payments"],
       ];
 
+function MobileTabs({ links }) {
+  return (
+    <nav className="mobile-tabs" aria-label="Pages">
+      {links.map(([label, to, icon, end]) => (
+        <NavLink key={to} to={to} end={Boolean(end)} className={({ isActive }) => `mobile-tab${isActive ? " on" : ""}`}>
+          <Icon name={icon} size={18} />
+          <span>{label}</span>
+        </NavLink>
+      ))}
+    </nav>
+  );
+}
 function NavItem({ to, icon, label, end }) {
   return (
     <NavLink to={to} end={Boolean(end)} className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>
@@ -49,7 +61,7 @@ function NavItem({ to, icon, label, end }) {
   );
 }
 
-function TopChrome({ subtitle, roleLabel, links, accountTo }) {
+function TopChrome({ subtitle, roleLabel, links, accountTo, onLogout }) {
   const { session } = useAuth();
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
@@ -129,6 +141,7 @@ function TopChrome({ subtitle, roleLabel, links, accountTo }) {
           <span>{initials(session?.name)}</span>
           <em>{roleLabel}</em>
         </button>
+        <Btn icon="logout" className="btn small top-logout" type="button" onClick={onLogout}>Logout</Btn>
       </div>
     </div>
   );
@@ -172,10 +185,11 @@ export function AdminLayout() {
         </div>
       </aside>
       <main>
-        <TopChrome subtitle="Society management dashboard" roleLabel="Secretary" links={[...adminLinks, ...adminFoot]} accountTo="/admin/account" />
+        <TopChrome subtitle="Society management dashboard" roleLabel="Secretary" links={[...adminLinks, ...adminFoot]} accountTo="/admin/account" onLogout={logout} />
         <div className="content">
           <Outlet />
         </div>
+        <MobileTabs links={adminLinks} />
       </main>
     </div>
   );
@@ -218,10 +232,12 @@ export function UserLayout() {
           roleLabel={session?.role}
           links={links}
           accountTo={session?.role === "owner" ? "/app/owner" : "/app/rent"}
+          onLogout={logout}
         />
         <div className="content">
           <Outlet />
         </div>
+        <MobileTabs links={links} />
       </main>
     </div>
   );
